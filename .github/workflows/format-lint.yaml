@@ -8,5 +8,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: First echo!
-        run: npm install eslint
+      - name: Install Dependencies
+        run: npm install eslint prettier
+
+      - name: Run ESLint
+        run: npx eslint .
