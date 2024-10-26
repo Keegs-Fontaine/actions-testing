@@ -12,6 +12,6 @@ router.post('/test', async () => {
   return    'hello from post'
 })
 
-router.get('/test', async () => {
+router.get('/test', async    () => {
                                return    'hi'
 })
