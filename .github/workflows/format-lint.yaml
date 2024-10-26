@@ -29,6 +29,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
+      - name: Check File Structure
+        run: |
+          echo "Current Directory:"
+          pwd
+          echo "Files in Current Directory:"
+          ls -la
+          echo "Node Modules:"
+          if [ -d "node_modules" ]; then
+            echo "node_modules exists."
+            ls -la node_modules
+          else
+            echo "node_modules does not exist."
+          fi
+
       - name: Install Dependencies
         run: npm install eslint prettier
 
