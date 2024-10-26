@@ -3,7 +3,7 @@ name: Format and Lint Code
 on: [push]
 
 jobs:
-  - lint-format:
+  lint-format:
     runs-on: ubuntu-latest
     steps:
       - name: Install Node
