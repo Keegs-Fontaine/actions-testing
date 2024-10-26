@@ -24,6 +24,16 @@ jobs:
       - name: Check for packages
         run: ls
 
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: test-key
+
+
       - name: Run Formatter
         run: npx prettier --check .
 
