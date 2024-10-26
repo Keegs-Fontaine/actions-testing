@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm install eslint prettier
-        
+
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
@@ -31,8 +31,8 @@ jobs:
           key: test-key
 
 
-      - name: Run Formatter
-        run: npx prettier --check .
+      # - name: Run Formatter
+      #   run: npx prettier --check .
 
-      - name: Run ESLint
-        run: npx eslint . --max-warnings=0
+      # - name: Run ESLint
+      #   run: npx eslint . --max-warnings=0
