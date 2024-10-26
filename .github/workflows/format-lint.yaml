@@ -1,10 +1,11 @@
 name: GitHub Actions Linter Formatter Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: Format and Lint Project
 on: [push]
 jobs:
   format-lint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 20
