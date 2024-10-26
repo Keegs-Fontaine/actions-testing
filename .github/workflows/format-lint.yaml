@@ -21,13 +21,8 @@ jobs:
       - name: Install Dependencies
         run: npm install eslint prettier
 
-      - name: Cache node_modules
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node_modules-${{ env.NODE_VERSION }}-cache
+      - name: Check for packages
+        run: ls
 
       - name: Run Formatter
         run: npx prettier --check .
