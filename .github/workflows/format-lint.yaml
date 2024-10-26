@@ -4,9 +4,6 @@ on: [push, pull_request]
 jobs:
   format-lint:
     runs-on: ubuntu-latest
-    permissions:  # Define permissions for this job
-      contents: write  # Allow write access to the repository contents
-      workflows: write # Allow the workflow to create and update other workflows
 
     steps:
       - uses: actions/checkout@v4
