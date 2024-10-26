@@ -1,14 +1,22 @@
 name: GitHub Actions Linter Formatter Demo
 run-name: Format and Lint Project
 on: [push, pull_request]
+permissions:
+  contents: write  # Allow read and write access to the repository contents
+  workflows: write # Allow the workflow to create and update other workflows
+
 jobs:
   format-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensures full history is available
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
       - name: Install Dependencies
         run: npm install eslint prettier
 
@@ -16,7 +24,7 @@ jobs:
         run: npx prettier --write .
 
       - name: Run ESLint
-        run: npx eslint .
+        run: npx eslint . --fix
 
       - name: Commit Changes
         run: |
@@ -29,3 +37,4 @@ jobs:
         run: git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
