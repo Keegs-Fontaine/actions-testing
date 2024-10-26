@@ -17,3 +17,15 @@ jobs:
 
       - name: Run ESLint
         run: npx eslint .
+
+      - name: Commit Changes
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add .
+          git commit -m "Format and lint code" || echo "No changes to commit"
+
+      - name: Push Changes
+        run: git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
