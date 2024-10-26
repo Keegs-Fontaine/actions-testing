@@ -7,8 +7,8 @@
 |
 */
 
-                  import router from '@adonisjs/core/services/router'
-                  router.post('/test', async () => {
+import router from '@adonisjs/core/services/router'
+router.post('/test', async () => {
   return 'hello from post'
 })
 
