@@ -1,5 +1,5 @@
 name: GitHub Actions Linter Formatter Demo
-on: [pull_request]
+on: [pull_request, workflow_dispatch]
 
 jobs:
   format-lint:
@@ -18,18 +18,8 @@ jobs:
       - name: Get node version
         run: echo "NODE_VERSION=$(node -v)" >> $GITHUB_ENV
 
-      - name: Get node_modules cache
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node_modules-${{ env.NODE_VERSION }}-cache
-          restore-keys: |
-            ${{ runner.os }}-node_modules-cache
-
       - name: Install Dependencies
-        run: npm install eslint prettier --verbose
+        run: npm install eslint prettier
 
       - name: Cache node_modules
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
