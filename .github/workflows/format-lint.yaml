@@ -1,5 +1,5 @@
 name: GitHub Actions Linter Formatter Demo
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   format-lint:
@@ -7,29 +7,28 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Ensures full history is available
-          token: ${{ secrets.WORKFLOW_TOKEN }}
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: '20'
+
+      - name: Get node version
+        run: echo "NODE_VERSION=$(node -v)" >> $GITHUB_ENV
+
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}
 
       - name: Install Dependencies
         run: npm install eslint prettier
 
       - name: Run Formatter
-        run: npx prettier --write .
+        run: npx prettier --check .
 
       - name: Run ESLint
-        run: npx eslint . --fix
-
-      - name: Commit Changes
-        run: |
-          git config --local user.name "github-actions"
-          git config --local user.email "github-actions@github.com"
-          git add .
-          git commit -m "[skip ci] Format and lint code" || echo "No changes to commit"
-
-      - name: Push Changes
-        run: git push
+        run: npx eslint . --max-warnings=0
