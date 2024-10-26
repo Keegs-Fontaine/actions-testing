@@ -1,6 +1,6 @@
 name: GitHub Actions Linter Formatter Demo
-run-name: Format and Lint Project
 on: [push, pull_request]
+
 jobs:
   format-lint:
     runs-on: ubuntu-latest
@@ -8,8 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Ensures full history is available
+          fetch-depth: 0  # Ensures full history is available
           token: ${{ secrets.WORKFLOW_TOKEN }}
+
 
       - uses: actions/setup-node@v3
         with:
@@ -29,7 +30,7 @@ jobs:
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
           git add .
-          git commit -m "Format and lint code" || echo "No changes to commit"
+          git commit -m "[skip ci] Format and lint code" || echo "No changes to commit"
 
       - name: Push Changes
         run: git push
