@@ -20,10 +20,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm install eslint prettier
-
-      - name: Check for packages
-        run: ls
-
+        
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
