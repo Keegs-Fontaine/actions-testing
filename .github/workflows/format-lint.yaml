@@ -22,7 +22,7 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: node_modules
-          key: test-key
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}
 
       - name: Install Dependencies
         run: npm install eslint prettier
