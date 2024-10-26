@@ -18,9 +18,6 @@ jobs:
       - name: Get node version
         run: echo "NODE_VERSION=$(node -v)" >> $GITHUB_ENV
 
-      - name: Install Dependencies
-        run: npm install eslint prettier
-
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
@@ -29,6 +26,10 @@ jobs:
         with:
           path: node_modules
           key: test-key
+          
+      - name: Install Dependencies
+        run: npm install eslint prettier
+
 
 
       # - name: Run Formatter
