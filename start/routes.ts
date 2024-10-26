@@ -9,9 +9,9 @@
 
 import router from '@adonisjs/core/services/router'
 router.post('/test', async () => {
-  return 'hello from post'
-})
+            return 'hello from post'
+          })
 
-router.get('/test', async () => {
-  return 'hi'
-})
+          router.get('/test', async () => {
+            return 'hi'
+          })
