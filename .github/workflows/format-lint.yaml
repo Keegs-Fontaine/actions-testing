@@ -18,11 +18,12 @@ jobs:
       - name: Install Dependencies
         run: npm install eslint prettier
 
+      - name: Run Tests
+        run: npm run test
+
       - name: Run Formatter
         run: npx prettier --check
 
       - name: Run ESLint
         run: npx eslint .
 
-      - name: Reject PR
-        run: echo PULL REQUEST REJECTED
