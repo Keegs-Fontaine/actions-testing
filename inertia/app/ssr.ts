@@ -1,4 +1,3 @@
-
 import { createInertiaApp } from '@inertiajs/svelte'
 
 export default function render(page: any) {
@@ -7,6 +6,6 @@ export default function render(page: any) {
     resolve: (name) => {
       const pages = import.meta.glob('../pages/**/*.svelte', { eager: true })
       return pages[`../pages/${name}.svelte`]
-    }
+    },
   })
 }
